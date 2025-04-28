@@ -5,8 +5,8 @@ import InputWord from '@/components/input-word'
 import { useState } from 'react'
 
 const WordCard = () => {
-  const [word_cn] = useState('躲在松散的满是灰尘的窗帘后面')
-  const [word_en] = useState('hiding behind the loose dusty curtain'.toLowerCase())
+  const [word_cn] = useState('我喜欢做这件事情')
+  const [word_en] = useState('I like to do it'.toLowerCase())
 
   return (
     <Card className="w-full">
