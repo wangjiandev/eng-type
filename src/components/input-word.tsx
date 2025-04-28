@@ -33,15 +33,22 @@ const InputWord = ({ word_en }: InputWordProps) => {
   }, [word_en])
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('e: ', e)
     const value = e.target.value
-    const newChar = value.slice(-1)
-    appendToString(inputIndex, newChar)
+    if (inputValue.length < value.length) {
+      const newChar = value.slice(-1)
+      appendToString(inputIndex, newChar)
+    } else {
+      deleteToString(inputIndex)
+    }
     setInputValue(value)
   }
 
   const appendToString = (index: number, textToAppend: string) => {
     setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.trim() + textToAppend : word.trim())))
+  }
+
+  const deleteToString = (index: number) => {
+    setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.trim().slice(0, -1) : word.trim())))
   }
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
