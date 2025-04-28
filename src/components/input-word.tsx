@@ -36,6 +36,10 @@ const InputWord = ({ word_en }: InputWordProps) => {
     const value = e.target.value
     if (inputValue.length < value.length) {
       const newChar = value.slice(-1)
+      const lastChar = inputValue.slice(-1)
+      if (newChar === ' ' && lastChar === ' ') {
+        return
+      }
       appendToString(inputIndex, newChar)
     } else {
       deleteToString(inputIndex)
@@ -44,11 +48,11 @@ const InputWord = ({ word_en }: InputWordProps) => {
   }
 
   const appendToString = (index: number, textToAppend: string) => {
-    setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.trim() + textToAppend : word.trim())))
+    setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word + textToAppend : word)))
   }
 
   const deleteToString = (index: number) => {
-    setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.trim().slice(0, -1) : word.trim())))
+    setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.slice(0, -1) : word)))
   }
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -72,26 +76,21 @@ const InputWord = ({ word_en }: InputWordProps) => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-2">
       <Input
-        type="text"
-        className="w-full"
+        type="password"
+        className="w-full opacity-0"
         placeholder="输入单词"
         autoFocus
         value={inputValue}
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
       />
-      <div>{inputIndex}</div>
-      <div className="border-input flex h-[2rem] items-center justify-center rounded-[2px] border-b-2 border-solid px-2 text-[1.5em] leading-none transition-all md:h-[4rem] md:text-[3em]">
-        {word_en}
-      </div>
       <div className="flex flex-row items-center justify-center gap-2">
         {wordsItemLength.map((length, index) => (
           <div
             key={index}
-            onClick={() => setInputIndex(index)}
             className={cn(
-              'border-input flex h-[2rem] cursor-pointer items-center justify-center rounded-[2px] border-b-2 border-solid px-2 text-[1.5em] leading-none transition-all md:h-[4rem] md:text-[3em]',
-              inputIndex === index ? 'border-b-primary text-primary' : 'border-b-input text-gray-500',
+              'border-input flex h-[2rem] items-center justify-center rounded-[2px] border-b-2 border-solid px-2 text-[1.5em] leading-none transition-all md:h-[4rem] md:text-[3em]',
+              inputIndex === index ? 'border-b-primary text-primary' : 'border-b-input text-card-foreground',
             )}
             style={{
               minWidth: `${length + 0.8}ch`,

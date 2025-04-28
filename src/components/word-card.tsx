@@ -1,4 +1,4 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import InputWord from '@/components/input-word'
@@ -10,10 +10,9 @@ const WordCard = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-row items-center justify-center">
-        <CardTitle>{word_cn}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex h-96 flex-row items-center justify-center">
+      <CardContent className="flex h-96 flex-col items-center justify-center">
+        <CardTitle className="mb-2 text-center text-3xl">{word_cn}</CardTitle>
+        <CardTitle className="text-center text-3xl text-gray-500/80">{word_en}</CardTitle>
         <InputWord word_en={word_en} />
       </CardContent>
       <CardFooter className="flex flex-row items-center justify-center gap-2">
