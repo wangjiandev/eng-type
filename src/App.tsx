@@ -1,14 +1,13 @@
-import { Button } from '@/components/ui/button'
+import { ThemeProvider } from '@/components/theme-provider'
+import WordCard from '@/components/word-card'
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-      <Button variant="outline">Click me</Button>
-      <Button variant="secondary">Click me</Button>
-      <Button variant="ghost">Click me</Button>
-      <Button variant="link">Click me</Button>
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="container mx-auto flex min-h-svh flex-col items-center justify-center">
+        <WordCard />
+      </div>
+    </ThemeProvider>
   )
 }
 
