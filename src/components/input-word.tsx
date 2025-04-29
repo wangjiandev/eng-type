@@ -50,6 +50,7 @@ const InputWord = ({ word_en }: InputWordProps) => {
   }, [word_en])
 
   useHotkeys(keymap, (keyboardEvent: KeyboardEvent) => {
+    playKeySound()
     const key = keyboardEvent.key
     appendToString(inputIndex, key)
   })
@@ -79,6 +80,12 @@ const InputWord = ({ word_en }: InputWordProps) => {
 
   const deleteToString = (index: number) => {
     setInputWords((prevWords) => prevWords.map((word, i) => (i === index ? word.slice(0, -1) : word)))
+  }
+
+  const playKeySound = () => {
+    const audio = new Audio('/click.wav')
+    audio.volume = 0.4
+    audio.play()
   }
 
   return (
