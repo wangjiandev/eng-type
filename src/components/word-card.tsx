@@ -11,8 +11,7 @@ const WordCard = () => {
   return (
     <Card className="w-full">
       <CardContent className="flex h-96 flex-col items-center justify-center">
-        <CardTitle className="mb-2 text-center text-3xl">{word_cn}</CardTitle>
-        <CardTitle className="text-center text-3xl text-gray-500/80">{word_en}</CardTitle>
+        <CardTitle className="my-2 text-center text-4xl">{word_cn}</CardTitle>
         <InputWord word_en={word_en} />
       </CardContent>
       <CardFooter className="flex flex-row items-center justify-center gap-2">
